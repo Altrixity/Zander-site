@@ -1,0 +1,20 @@
+body {
+  background-color:darkblue;
+  color:white;
+  text-align:center;
+  font-family: "Fontdiner Swanky", serif;
+  font-weight: 400;
+  font-style: normal;
+
+}
+header {
+  background-color:lightblue;
+  color:darkblue;
+  text-align:center;
+  border-radius:20px;
+  padding-left:35px;
+  padding-right:35px;
+}
+img {
+  border:5px lightblue;
+}
