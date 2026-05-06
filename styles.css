@@ -17,4 +17,6 @@ header {
 }
 img {
   border:5px magenta;
+  width:200px;
+  height:auto;
 }
