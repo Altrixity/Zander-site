@@ -27,5 +27,141 @@
 	  <br>
 	  <p>More about me:</p>
 	<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRA85sx1rtPZRdXVizDIO-ejW5ly0pS7DQJh1HercXvOG5_-EzU7loDYRysT5y6sWxg5TpMLnqB572q/pubembed?start=true&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+	  <!-- Pink Upward Confetti Background -->
+<canvas id="pinkConfettiBg"></canvas>
+
+<script>
+(() => {
+    const canvas = document.getElementById("pinkConfettiBg");
+    const ctx = canvas.getContext("2d");
+
+    let w, h;
+    const confetti = [];
+    const CONFETTI_COUNT = 160;
+
+    function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+    }
+
+    resize();
+    window.addEventListener("resize", resize);
+
+    const colors = [
+        "#ff4da6",
+        "#ff66b3",
+        "#ff85c1",
+        "#ff99cc",
+        "#ffb3d9",
+        "#ffcce6"
+    ];
+
+    function random(min, max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    class Piece {
+        constructor() {
+            this.reset(true);
+        }
+
+        reset(first = false) {
+            this.x = random(0, w);
+            this.y = first ? random(0, h) : h + random(10, 120);
+
+            this.size = random(4, 12);
+            this.speedY = random(1, 4);
+            this.speedX = random(-1.5, 1.5);
+
+            this.rotation = random(0, Math.PI * 2);
+            this.rotationSpeed = random(-0.08, 0.08);
+
+            this.color = colors[Math.floor(Math.random() * colors.length)];
+
+            this.shape = Math.random() > 0.5 ? "rect" : "circle";
+
+            this.alpha = random(0.5, 1);
+        }
+
+        update() {
+            this.y -= this.speedY;
+            this.x += this.speedX;
+
+            this.rotation += this.rotationSpeed;
+
+            // floating movement
+            this.x += Math.sin(this.y * 0.02) * 0.5;
+
+            if (this.y < -20) {
+                this.reset();
+            }
+
+            // wrap horizontally
+            if (this.x > w + 20) this.x = -20;
+            if (this.x < -20) this.x = w + 20;
+        }
+
+        draw() {
+            ctx.save();
+
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+
+            ctx.globalAlpha = this.alpha;
+
+            ctx.fillStyle = this.color;
+
+            if (this.shape === "rect") {
+                ctx.fillRect(
+                    -this.size / 2,
+                    -this.size / 2,
+                    this.size,
+                    this.size * 0.6
+                );
+            } else {
+                ctx.beginPath();
+                ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            ctx.restore();
+        }
+    }
+
+    for (let i = 0; i < CONFETTI_COUNT; i++) {
+        confetti.push(new Piece());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, w, h);
+
+        confetti.forEach(p => {
+            p.update();
+            p.draw();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
+})();
+</script>
+
+<style>
+#pinkConfettiBg {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+
+    background:
+        radial-gradient(circle at center,
+        #1a0010 0%,
+        #12000a 40%,
+        #000000 100%);
+}
+</style>
   </body>
 </html>
