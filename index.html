@@ -1,6 +1,37 @@
 <!doctype html>
 <html>
   <head>
+	    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+    <meta name="theme-color" content="#ffffff">
+
+
+    <style>
+        /* Prevent weird sizing issues */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100dvh; /* Better on modern mobile browsers */
+        }
+
+        img, video, canvas, svg {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
     <title>Zander Site 2026</title>
 	<link rel="stylesheet" href="styles.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,6 +57,13 @@
 		<object data="Untitled.svg" width="300" height="300"></object>
 	  <br>
 	  <p>More about me:</p>
-	<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRA85sx1rtPZRdXVizDIO-ejW5ly0pS7DQJh1HercXvOG5_-EzU7loDYRysT5y6sWxg5TpMLnqB572q/pubembed?start=true&loop=false&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+	<div class="slides-container">
+   	 <iframe
+        src="https://docs.google.com/presentation/d/e/2PACX-1vRA85sx1rtPZRdXVizDIO-ejW5ly0pS7DQJh1HercXvOG5_-EzU7loDYRysT5y6sWxg5TpMLnqB572q/pubembed?start=true&loop=false&delayms=60000"
+        frameborder="0"
+        allowfullscreen
+        loading="lazy">
+     </iframe>
+	</div>
   </body>
 </html>

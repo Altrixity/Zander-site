@@ -23,3 +23,19 @@ img {
   width:500px;
   height:auto;
 }
+.slides-container {
+    width: min(95vw, 1000px);
+    aspect-ratio: 4 / 3; /* Google Slides */
+    margin: 2rem auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    background: #fff;
+}
+
+.slides-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
